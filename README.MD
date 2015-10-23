@@ -1,4 +1,4 @@
-# HTML/CSS开发规范指南
+# HTML/CSS开发规范(for corp FE)
 
 ## 目录
 
@@ -12,12 +12,8 @@
 	* [注释](#comment)
 2. [HTML约定](#html)
 	* [文档类型](#doctype)
-	* [省略属性值](#attribute)
-	* [用双引号包裹属性值](#quots)
 	* [嵌套](#nest)
 	* [标签闭合](#close-tag)
-	* [有效操作](#friendly)
-	* [按模块添加注释](#html-comment)
 	* [格式](#format)
 	* [语义化标签](#semantic)
 	* [模块化](#html-module)
@@ -25,7 +21,6 @@
 	* [文件引用](#link)
 	* [命名-组成元素](#element)
 	* [命名-词汇规范](#word)
-	* [命名-缩写规范](#abbr)
 	* [命名-前缀规范](#prefix)
 	* [id与class](#id)
 	* [书写格式](#packaging)
@@ -40,7 +35,6 @@
 	* [背景图](#background-image)
 	* [前景图](#image)
 	* [Sprite](#sprite)
-7. [结语](#end)
 
 
 <a name="general"></a>
@@ -176,38 +170,9 @@
 > 避免出现不可控的问题
 
 
-<a name="attribute"></a>
-### 3.省略属性值
-
-非必须属性值可以省略
-
-不允许：
-
-	<input type="text" readonly="readonly" />
-	<input type="text" disabled="disabled" />
-
-应该：
-
-	<input type="text" readonly />
-	<input type="text" disabled />
-
-> 这里的 readonly 和 disabled 属性的值是非必须的，可以省略不写，我们知道HTML5表单元素新增了很多类似的属性，如: required
-
-<a name="quots"></a>
-### 4.用双引号包裹属性值
-
-所有的标签属性值必须要用双引号包裹，同时也不允许有的用双引号，有的用单引号的情况
-
-不允许：
-
-	<a href=http://www.qunar.com class=home>去哪儿网</a>
-
-应该：
-
-	<a href="http://www.qunar.com" class="home">去哪儿网</a>
 
 <a name="nest"></a>
-### 5.嵌套
+### 2.嵌套
 
 所有元素必须正确嵌套
 
@@ -266,7 +231,7 @@
 > 举个例子，在HTML5中，a元素同时属于 Flow content, Phrasing content, Interactive content, Palpable content 4个分类，那些子元素是 phrasing 元素的元素可以是 a 的父元素，a 允许的子元素是以它的父元素允许的子元素为准，但不能包含 interactive 元素。
 
 <a name="close-tag"></a>
-### 6.标签闭合
+### 3.标签闭合
 
 所有标签必须闭合
 
@@ -284,44 +249,8 @@
 
 
 
-<a name="friendly"></a>
-### 7.有效操作
-
-为表单元素label加上for属性
-
-不允许：
-
-	<input type="radio" name="color" value="0" /><label>蓝色</label>
-	<input type="radio" name="color" value="1" /><label>粉色</label>
-
-应该：
-
-	<input type="radio" id="blue" name="color" value="0" /><label for="blue">蓝色</label>
-	<input type="radio" id="pink" name="color" value="1" /><label for="pink">粉色</label>
-
-> for属性能让点击label标签的时候，同时focus到对应的 input 和 textarea上，增加响应区域
-
-<a name="html-comment"></a>
-### 8.按模块添加注释
-
-在每个模块开始和结束的地方添加注释
-
-	<!-- 新闻列表模块 -->
-	<div class="m-news g-mod"
-	...
-	<!-- /新闻列表模块 -->
-
-	<!-- 排行榜模块 -->
-	<div class="m-topic g-mod"
-	...
-	<!-- /排行榜模块 -->
-
-> 注释内容左右两边保留和注释符号有1个空格位，在注释内容内不允许再出现中划线“-”，某些浏览器会报错。
->
-> 注释风格保持与原生HTML的语法相似：成对出现 `<!-- comment --><!-- /comment -->`
-
 <a name="format"></a>
-### 9.格式
+### 4.格式
 
 * 将每个块元素、列表元素或表格元素都放在新行；
 * inline元素视情况换行，以长度不超过编辑器一屏为宜；
@@ -339,7 +268,7 @@
 	</div>
 
 <a name="semantic"></a>
-### 10.语义化标签
+### 5.语义化标签
 
 * 根据HTML元素的本身用途去使用它们；
 * 禁止使用被废弃的用于表现的标签，如 center, font 等；
@@ -358,7 +287,7 @@
 > 参阅：[HTML5 Elements](http://www.w3.org/TR/html5/)
 
 <a name="html-module"></a>
-### 11.模块化
+### 6.模块化
 
 * 每个模块必须有一个模块名；
 * 每个模块的基本组成部分应该一致；
@@ -429,26 +358,9 @@
 
 	nav, aside, news, type, search
 
-<a name="abbr"></a>
-### 4.命名-缩写规范
-
-* 保证缩写后还能较为清晰保持原单词所能表述的意思；
-* 使用业界熟知的或者约定俗成的。
-
-不推荐：
-
-	navigation   =>  navi
-	header       =>  head
-	description  =>  des
-
-推荐：
-
-	navigation   =>  nav
-	header       =>  hd
-	description  =>  desc
 
 <a name="prefix"></a>
-### 5.命名-前缀规范
+### 4.命名-前缀规范
 
 前缀|说明|示例
 ---|---|---|
@@ -478,12 +390,12 @@ js-|所有用于纯交互的命名，不涉及任何样式规则。JSer拥有全
 js- 这种级别的className完全交由JSer自定义，但是命名的规则也可以保持跟重构一致，比如说不能使用拼音之类的
 
 <a name="id"></a>
-### 6.id与class
+### 5.id与class
 
-重构工程师只允许使用class（因历史原因及大家的习惯做出妥协）。
+如果仅仅是写css样式用class
 
 <a name="packaging"></a>
-### 7.书写格式
+### 6.书写格式
 
 * 选择器与大括号之间保留一个空格；
 * 分号之后保留一个空格；
@@ -514,7 +426,7 @@ js- 这种级别的className完全交由JSer自定义，但是命名的规则也
 	}
 
 <a name="semicolon"></a>
-### 8.规则与分号
+### 7.规则与分号
 
 每条规则结束后都必须加上分号
 
@@ -535,7 +447,7 @@ js- 这种级别的className完全交由JSer自定义，但是命名的规则也
 	}
 
 <a name="unit"></a>
-### 9.0与单位
+### 8.0与单位
 
 如果属性值为0，则不需要为0加单位
 
@@ -554,7 +466,7 @@ js- 这种级别的className完全交由JSer自定义，但是命名的规则也
 	}
 
 <a name="decimal"></a>
-### 10.0与小数
+### 9.0与小数
 
 如果是0开始的小数，前面的0可以省略不写
 
@@ -573,51 +485,7 @@ js- 这种级别的className完全交由JSer自定义，但是命名的规则也
 	}
 
 
-### 13.属性书写顺序
-
-* 遵循先布局后内容的顺序。
-
-```
-.g-box {
-　　　display: block;
-　　　float: left;
-　　　width: 500px;
-　　　height: 200px;
-　　　margin: 10px;
-　　　padding: 10px;
-　　　border: 10px solid;
-　　　background: #aaa;
-　　　color: #000;
-　　　font: 14px/1.5 sans-serif;
-}
-```
-
-> 这个应该好理解，比如优先布局，我们知道布局属性有 display, float, overflow 等等；内容次之，比如 color, font, text-align 之类。
-
-* 组概念。
-
-拿上例的代码来说，如果我们还需要进行定位及堆叠，规则我们可以改成如下：
-
-```
-.g-box {
-　　　display: block;
-　　　position: relative;
-　　　z-index: 2;
-　　　top: 10px;
-　　　left: 100px;
-　　　float: left;
-　　　width: 500px;
-　　　height: 200px;
-　　　margin: 10px;
-　　　padding: 10px;
-　　　border: 10px solid;
-　　　background: #aaa;
-　　　color: #000;
-　　　font: 14px/1.5 sans-serif;
-}
-```
-
-> 从代码中可以看到，我们直接将z-index, top, left 紧跟在 position 之后，因为这几个属性其实是一组的，如果去掉position，则后3条属性规则都将失效。
+### 10.属性书写顺序
 
 * 私有属性在前标准属性在后
 
@@ -633,7 +501,7 @@ js- 这种级别的className完全交由JSer自定义，但是命名的规则也
 > 当有一天你的浏览器升级后，可能不再支持私有写法，那么这时写在后面的标准写法将生效，避免无法向后兼容的情况发生。
 
 <a name="css-comment"></a>
-### 14.注释规范
+### 11.注释规范
 
 保持注释内容与星号之间有一个空格的距离
 
@@ -653,7 +521,7 @@ js- 这种级别的className完全交由JSer自定义，但是命名的规则也
 > 应用了高级技巧的地方一定要注释说明
 
 <a name="css-module"></a>
-### 18.模块化
+### 12.模块化
 
 * 每个模块必须是一个独立的样式文件，文件名与模块名一致；
 * 模块样式的选择器必须以模块名开头以作范围约定；
